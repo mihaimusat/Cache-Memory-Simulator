@@ -1,0 +1,34 @@
+Musat Mihai-Robert
+Grupa 323CB
+
+Tema 1 POO - Give me more subscriptions ! 
+-----------------------------------------
+
+	Pentru implementarea temei, pe langa clasa Main am folosit urmatoarele clase: 
+Subscription(clasa abstracta), Free(mosteneste Subscription), Basic(mosteneste Free), Premium(mosteneste Basic), 
+FifoCache, LruCache, LfuCache si interfata Cache.Daca primele 4 clase denumesc tipurile de obiecte cu care 
+opereaza memoria principala si memoria cache, ultimele 3 clase implementeeaza tipurile de memorie cache asa cum sunt
+prezentate in enunt.Deoarece am implementat memoria principala ca un vector de elemente de tip
+Subscription(tipul de obiect cel mai sus situat in lantul de mostenire), voi analiza doar metodele
+din cadrul clasei Subscription, celelalte clase de obiecte mostenind metodele implementate.
+	Aceasta clasa contine drept atribute numele obiectului, timestamp-ul necesar pentru LruCache, 
+si visits necesar pentru LfuCache.Metoda void display(boolean flag, PrintWriter fileWriter) 
+formateaza afisarea obiectului folosit(Basic, Free sau Premium) in functie de flag(indicator pentru 0/1) 
+in fisierul de output dat ca parametru, iar metoda void decrement() scade din numarul de cereri pentru obiect
+(in afara de Free, in care numarul de cereri este nelimitat).
+	Astfel, avand aceste obiecte create, am creat interfata Cache care contine metodele folosite in cele trei tipuri
+de cache: void add(Subscription object), void remove(Subscription object), boolean isFound(String name).Ultima functie 
+am creat-o suplimentar, pentru a testa daca un anumit tip de obiect (pe care il caut dupa nume)
+se gaseste intr-un anumit tip de memorie cache.
+	Cele trei tipuri de cache, FifoCache, LruCache si LfuCache am ales sa le implementez 
+ca un ArrayList de obiecte de tip Subscription.In particular, operatia de add pentru FifoCache simuleaza 
+principiul de coada prin faptul ca atunci cand nu e suficient loc in cache, elimin primul element si adaug la final, 
+pentru LruCache este necesara gasirea elementului din vector care are timestamp-ul minim, adica a celui 
+care este bagat cel mai devreme, pentru LfuCache, este necesara gasirea elementului care a fost vizitat de cele mai putine ori.
+Pe de alta parte, operatia de remove si verificarea faptului ca un anumit tip de obiect se gaseste sau nu in cache(isFound) 
+este aceeasi pentru toate tipurile de cache: in cadrul operatiei remove, caut prima aparitie a obiectului dupa nume 
+folosind variabila index, iar in cadrul operatiei isFound fac aceeasi parcurgere, doar ca imediat ce am gasit obiectul, intorc 
+true/false.In clasa Main am avut grija ca la operatia de add sa inserez numai in memoria principala, nu si in cache, iar in cazul 
+in care un element exista deja in memoria principala sau in ambele, sa il suprascriu in memoria principala si sa il elimin din 
+cache, iar la operatia get sa tin cont de cazurile 0, 1 si 2 asa cum sunt prezentate in enunt. 
+

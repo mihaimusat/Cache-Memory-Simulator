@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"<Unnamed>","l":"Basic"},{"p":"<Unnamed>","l":"Cache"},{"p":"<Unnamed>","l":"FifoCache"},{"p":"<Unnamed>","l":"Free"},{"p":"<Unnamed>","l":"LfuCache"},{"p":"<Unnamed>","l":"LruCache"},{"p":"<Unnamed>","l":"Main"},{"p":"<Unnamed>","l":"Premium"},{"p":"<Unnamed>","l":"Subscription"}]
